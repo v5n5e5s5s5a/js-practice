@@ -22,7 +22,7 @@ const result2 = items.filter((element) => element.price >= 1000)
 console.log(result2)
 
 // 3. Calculate the full price of all products combined
-const result3 = items.reduce((a,b) => { return a + b.price}, 0)
+const result3 = items.reduce((a,b) => { return a + b.price},0)
 console.log(result3)
 
 // 4. Calculate the full price of all products combined and remove products that are under $10
