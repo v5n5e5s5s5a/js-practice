@@ -14,13 +14,11 @@ const items = [
 ];
 
 // 1. Filter and show the product that will be bought when you don't have much money (Cheap one)
-const minPrice = items[2].price;
-const result1 = items.filter((element) => element.price <= minPrice)
+const result1 = items.filter((element) => element.price <= 10)
 console.log(result1)
 
 // 2. Filter and show the product that will be expensive in the array
-const maxPrice = items[4].price
-const result2 = items.filter((element) => element.price > maxPrice)
+const result2 = items.filter((element) => element.price >= 1000)
 console.log(result2)
 
 // 3. Calculate the full price of all products combined
