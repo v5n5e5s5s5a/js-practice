@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .lineThrough {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ToDo List</h1>
+    <form id="form">
+        <label for="AddNewTask">Add New Task</label>
+        <input type="text" id="AddNewTask" required>
+        <button type="button" id="addbtn">Add New Task</button>
+    </form>
+
+    <ul id="ul"></ul>
+    <button id="remove">Mark Task As Complete</button>
+</body>
+
+
+<script>
+
+    let tasks = []
+
+    function modify() {
+        const ul = document.getElementById('ul')
+        ul.innerHTML = ''
+
+        tasks.forEach((task, index) => {
+            const list = document.createElement('li')
+            const checkbox = document.createElement('input')
+            checkbox.type = 'checkbox'
+            checkbox.checked = task.Completed
+            checkbox.addEventListener('change', () => completed(index))
+
+            const label = document.createElement('label')
+            label.textContent = task.taskName
+            if (task.Completed) {
+                label.classList.add('lineThrough')
+            }
+
+            list.appendChild(label)
+            list.appendChild(checkbox)
+            ul.appendChild(list)
+        });
+
+    }
+
+    function addTask() {
+        const newInput = document.getElementById('AddNewTask').value.trim()
+
+        if (newInput !== "") {
+            tasks.push({ taskName: newInput, Completed: false })
+            modify();
+            document.getElementById('AddNewTask').value = ""
+        }
+    }
+
+    const addbtn = document.getElementById('addbtn')
+    addbtn.addEventListener('click', addTask)
+
+    function completed(index) {
+        tasks[index].Completed = !tasks[index].Completed
+        modify()
+    }
+
+    function removeCompletedTasks() {
+        tasks = tasks.filter(task => !task.Completed)
+        modify()
+    }
+
+    const remove = document.getElementById('remove')
+    remove.addEventListener('click', removeCompletedTasks)
+</script>
+
+</html>

@@ -1,32 +1,41 @@
-const tasks = ["shopping", "fishing", "coding", "laundry"]
+const tasks = []
+
 //Q.1
-function addTask(){
-    tasks.push("swimming")
-    return tasks
+function addTask (taskname){
+    tasks.push({nameOfTask:taskname, completed:false})   
 }
-console.log(addTask())
+addTask("swimming")
+addTask("cooking")
+addTask("coding")
+addTask("eat")
+addTask("reading")
+console.log(tasks)
+
 
 //Q.2
-function rmTask(){
-    tasks.shift()
-    return tasks
+function removeTask(index){
+    return tasks.splice(index, 1)
 }
-console.log(rmTask())
+removeTask(2)
 console.log(tasks)
 
 //Q.3
-function completedTask(){
-    const compTask = tasks.splice(1,1)
-    return (`${compTask} has been completed`)
+function completedTask(index){
+    tasks[index].completed = true
 }
-console.log(completedTask())
+completedTask(2)
+console.log(tasks)
 
 //Q.4
-function sorted(){
-    const newSortedArray = tasks.toSorted();
-    return (`Sorted alphabetically \n ${newSortedArray}`)
+function sortTasks(){
+   return tasks.sort((a,b) => a.nameOfTask.localeCompare(b.nameOfTask))
 }
-console.log(sorted())
+console.log(sortTasks())
 
 //Q.5
-console.log(`Incomplete tasks \n ${tasks}`)
+function incompleteTasks(){
+    const result = tasks.filter((item) => item.completed === false)
+    return result.length
+}
+
+console.log(`The number of incomplete tasks is: ${incompleteTasks()}`)
